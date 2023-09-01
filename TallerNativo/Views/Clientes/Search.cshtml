@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TallerNativo.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Resultado de Búsqueda</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model != null && Model.Any())
+            {
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            
+                            <th>Cedula</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cliente in Model)
+                        {
+                            <tr>
+                                
+                                <td>@cliente.Cedula</td>
+                                <td>@cliente.Nombre</td>
+                                <td>@cliente.Apellido</td>
+                                <td>@cliente.Direccion</td>
+                                <td>@cliente.Telefono</td>
+                                <td>
+                                    <a asp-controller="Clientes" asp-action="Edit" asp-route-id="@cliente.IdClientes" class="col-sm-3 btn btn-info">Editar</a>
+                                    <a asp-controller="Clientes" asp-action="Delete" asp-route-id="@cliente.IdClientes" class="col-sm-3 btn btn-danger">Eliminar</a>
+                                    <a asp-action="Index" class="col-sm-3 btn btn-dark">Regresar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No se encontraron resultados para la búsqueda.</p>
+            }
+        </div>
+
+    </div>

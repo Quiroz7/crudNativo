@@ -1,0 +1,45 @@
+﻿@model TallerNativo.Models.Venta
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar</h1>
+
+<h4>Información de la Venta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdVenta" />
+            <div class="form-group">
+                <label asp-for="FechaVenta" class="control-label"></label>
+                <input asp-for="FechaVenta" class="form-control" />
+                <span asp-validation-for="FechaVenta" class="text-danger"></span>
+            </div><br></br>
+            <div class="form-group">
+                <label asp-for="IdClientes" class="control-label"></label>
+                <select asp-for="IdClientes" class="form-control" asp-items="ViewBag.IdClientes"></select>
+                <span asp-validation-for="IdClientes" class="text-danger"></span>
+            </div><br></br>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div><br></br>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div><br></br>
+
+<div class="col-md-2">
+    <a asp-action="Index" class="btn btn-dark">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

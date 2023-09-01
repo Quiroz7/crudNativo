@@ -1,0 +1,70 @@
+CREATE DATABASE laTiendaMia;
+
+USE laTiendaMia;
+
+
+
+Create Table Clientes (
+
+IdClientes int primary key identity,
+
+Cedula int unique not null,
+
+Nombre varchar(50) not null,
+
+Apellido varchar(50) not null,
+
+Direccion varchar(80) not null,
+
+Telefono varchar(15) not null
+
+);
+
+
+Create Table Productos (
+
+IdProductos int primary key identity,
+
+Codigo int unique not null,
+
+Nombre varchar(50) not null,
+
+Precio float not null,
+
+Cantidad int not null
+
+);
+
+
+Create Table Ventas (
+
+    IdVenta int primary key identity,
+
+    FechaVenta datetime NOT NULL default getdate(),
+
+    Idclientes int NOT NULL,
+
+    Total decimal(10, 2) NOT NULL,
+
+    foreign key (IdClientes) references Clientes (IdClientes)
+
+);
+
+
+Create Table DetallesVentas (
+
+    DetalleVentaId int primary key identity,
+
+    VentaId int NOT NULL,
+
+    ProductoId int NOT NULL,
+
+    Cantidad int NOT NULL,
+
+    Valor decimal(10, 2) NOT NULL,
+
+    foreign key (VentaId) references Ventas (IdVenta),
+
+    foreign key (ProductoId) references Productos (IdProductos)
+
+);
